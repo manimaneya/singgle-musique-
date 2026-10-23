@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SINGGLE – La musique africaine, ensemble</title>
+<style>
+:root{--bg:#fff;--bg2:#fff4f1;--card:#fff;--tx:#2b2230;--mu:#8a7b80;--s:#fa8072;--s2:#ff9f8f;--sd:#e5604f;--bd:#f6ddd7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1e171a;--bg2:#261d21;--card:#2b2126;--tx:#fbeeea;--mu:#b9a2a6;--bd:#3d2e33}}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;background:var(--bg2);color:var(--tx);padding-bottom:90px}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:14px;padding:10px 18px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:22px;letter-spacing:1px;color:var(--sd)}
+nav{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+nav button{padding:8px 14px;border-radius:20px;font-weight:600;color:var(--mu)}
+nav button.on,nav button:hover{background:var(--s);color:#fff}
+.btn{background:var(--s);color:#fff;padding:9px 18px;border-radius:22px;font-weight:700}
+.btn:hover{background:var(--sd)}.btn.o{background:none;color:var(--sd);border:1.5px solid var(--s)}
+main{max-width:980px;margin:0 auto;padding:18px}
+.hero{background:linear-gradient(120deg,var(--s),var(--s2));color:#fff;border-radius:20px;padding:28px;margin-bottom:18px}
+.hero h1{font-size:28px}.hero p{margin:8px 0 14px;opacity:.95}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:10px}
+.chip{padding:6px 14px;border-radius:18px;background:var(--card);border:1px solid var(--bd);white-space:nowrap;font-size:14px}
+.chip.on{background:var(--s);color:#fff;border-color:var(--s)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:14px}
+.tr{display:flex;gap:14px;align-items:center}
+.cv{width:64px;height:64px;border-radius:14px;flex:none;display:grid;place-items:center;color:#fff;font-weight:800;font-size:22px}
+.inf{flex:1;min-width:0}.inf b{display:block;font-size:17px}.inf small{color:var(--mu)}
+.tag{display:inline-block;background:var(--bg2);color:var(--sd);border-radius:10px;padding:2px 9px;font-size:12px;margin-left:6px;font-weight:600}
+.pl{width:46px;height:46px;border-radius:50%;background:var(--s);color:#fff;font-size:18px;flex:none}
+.act{display:flex;gap:6px;margin-top:10px;border-top:1px solid var(--bd);padding-top:8px;flex-wrap:wrap}
+.act button{flex:1;padding:8px;border-radius:10px;color:var(--mu);font-weight:600;font-size:14px;min-width:90px}
+.act button:hover{background:var(--bg2)}.act .liked{color:var(--sd)}
+.cm{margin-top:8px}.cm p{background:var(--bg2);border-radius:12px;padding:7px 12px;margin-bottom:6px;font-size:14px}.cm p b{color:var(--sd)}
+.cm form{display:flex;gap:6px}
+input,select,textarea{font:inherit;width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--tx)}
+label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+.rk{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.rk .n{width:34px;font-weight:800;font-size:20px;color:var(--s);text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.ar{text-align:center}.ar .cv{width:84px;height:84px;border-radius:50%;margin:0 auto 10px;font-size:30px}
+.modal{position:fixed;inset:0;background:#0007;display:none;place-items:center;z-index:20;padding:16px}
+.modal.on{display:grid}.modal .card{max-width:440px;width:100%;max-height:90vh;overflow:auto;margin:0}
+.seg{display:flex;gap:8px}.seg button{flex:1;padding:10px;border-radius:12px;border:1.5px solid var(--bd);font-weight:700}.seg .on{background:var(--s);color:#fff;border-color:var(--s)}
+#bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid var(--bd);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:12px;z-index:6}
+#bar .pr{flex:1;height:6px;background:var(--bd);border-radius:3px;cursor:pointer}#pf{height:100%;width:0;background:var(--s);border-radius:3px}
+.empty{text-align:center;color:var(--mu);padding:30px}
+h2{margin:6px 0 14px}
+.t10{display:flex;gap:12px;overflow-x:auto;padding-bottom:10px;margin-bottom:14px}.t10 .it{flex:none;width:150px;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px;text-align:center;position:relative}.t10 .it .cv{width:70px;height:70px;margin:0 auto 8px}.t10 .n{position:absolute;top:8px;left:12px;font-weight:800;color:var(--s);font-size:18px}.t10 b{font-size:14px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.t10 small{color:var(--mu);display:block;font-size:12px}
+.st{display:flex;align-items:center;gap:2px;margin-top:4px}.st .s{font-size:21px;line-height:1;color:var(--bd);padding:0 1px}.st .s.on{color:#f5b301}.st small{margin-left:6px}
+.badge{background:var(--bg2);color:var(--sd);padding:6px 12px;border-radius:18px;font-weight:700;font-size:13px;margin-right:8px;white-space:nowrap}
+.ad,.adsbygoogle,iframe[src*="ads"]{display:none!important}
+@media(max-width:560px){.hero h1{font-size:22px}.tr{gap:10px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo"><svg width="38" height="38" viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="#fa8072"/><path d="M12 24v-8M17 28V12M22 25v-10M27 22v-4" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="31" cy="12" r="3" fill="#fff"/></svg>SINGGLE</div>
+ <nav id="nav"></nav>
+ <div id="acc"></div>
+</header>
+<main id="m"></main>
+<div id="bar"><button class="pl" id="pp">▶</button><div class="inf"><b id="pt">Choisis un son</b><small id="pa">SINGGLE</small></div><div class="pr" id="pb"><div id="pf"></div></div></div>
+<div class="modal" id="md"><div class="card" id="mc"></div></div>
+<audio id="au"></audio>
+<script type="module">
+/* ====== 1) COLLE ICI TA CONFIG FIREBASE (Paramètres du projet > Tes applications > Web) ====== */
+const CFG={apiKey:"VOTRE_API_KEY",authDomain:"VOTRE_PROJET.firebaseapp.com",projectId:"VOTRE_PROJET",storageBucket:"VOTRE_PROJET.appspot.com",messagingSenderId:"000000000000",appId:"VOTRE_APP_ID"};
+/* ================================================================================================ */
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import{getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{getFirestore,doc,setDoc,updateDoc,deleteDoc,collection,addDoc,onSnapshot,query,limit}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import{getStorage,ref,uploadBytes,getDownloadURL}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+var G=["Afrobeats","Amapiano","Coupé-décalé","Rumba","Highlife","Bongo Flava","Gqom","Afro-soul","Mbalax","Zouglou","Gospel africain","Hip-hop africain","Raï","Kuduro","Makossa"];
+var C={"Côte d’Ivoire":"🇨🇮","Nigeria":"🇳🇬","Afrique du Sud":"🇿🇦","RD Congo":"🇨🇩","Ghana":"🇬🇭","Tanzanie":"🇹🇿","Sénégal":"🇸🇳","Cameroun":"🇨🇲","Angola":"🇦🇴","Algérie":"🇩🇿","Kenya":"🇰🇪","Mali":"🇲🇱","Bénin":"🇧🇯","Maroc":"🇲🇦","Autre":"🌍"};
+var COL=["#fa8072","#ff9f8f","#e5604f","#f4a261","#e76f8b","#d98b79"];
+var T=[["Soleil d’Abidjan","Kofi Dembélé","Côte d’Ivoire","Coupé-décalé",9400,812],["Lagos Nights","Ada Okoro","Nigeria","Afrobeats",15200,1430],["Johannesburg Groove","DJ Thando","Afrique du Sud","Amapiano",12100,990],["Kinshasa Rêve","Mireille Kasa","RD Congo","Rumba",7300,640],["Accra Highlife","Kwame Boateng","Ghana","Highlife",6100,520],["Zanzibar","Neema Juma","Tanzanie","Bongo Flava",8800,730],["Dakar Mbalax","Awa Ndiaye","Sénégal","Mbalax",5400,470],["Douala Vibes","Eto’o Mbarga","Cameroun","Makossa",4100,360],["Luanda Kuduro","Zé Manuel","Angola","Kuduro",5900,500],["Alger Raï Sun","Yacine Belkacem","Algérie","Raï",3900,310],["Zouglou Forever","Les Frères Tapé","Côte d’Ivoire","Zouglou",6800,590],["Gospel Lumière","Chorale Espérance","Ghana","Gospel africain",3300,420],["Bamako Sunrise", "Salif Diarra", "Mali", "Afro-soul", 5200, 440],["Nairobi Rhythm", "Wanjiru Mwangi", "Kenya", "Afrobeats", 7100, 610],["Cotonou Fever", "Prisca Adjovi", "Bénin", "Afrobeats", 4600, 380],["Casablanca Nights", "Karim Idrissi", "Maroc", "Raï", 3700, 290],["Pretoria Deep", "Lerato M.", "Afrique du Sud", "Amapiano", 10400, 880],["Ibadan Flow", "Tobi Adeyemi", "Nigeria", "Hip-hop africain", 8300, 700],["Brazza Rumba", "Papy Mabiala", "RD Congo", "Rumba", 6200, 520],["Kumasi Gold", "Ama Serwaa", "Ghana", "Highlife", 4800, 400],["Dar Taarab Remix", "Zawadi Salim", "Tanzanie", "Bongo Flava", 5700, 470],["Thiès Groove", "Cheikh Mbaye", "Sénégal", "Mbalax", 4300, 350],["Yaoundé Makossa", "Lydienne Biyong", "Cameroun", "Makossa", 3900, 320],["Benguela Beat", "Nelito Costa", "Angola", "Kuduro", 4500, 370],["Bouaké Zouglou Night", "Tina Kouassi", "Côte d’Ivoire", "Zouglou", 7600, 640],["Abidjan Drill", "Gaspard K.", "Côte d’Ivoire", "Hip-hop africain", 9100, 770],["Durban Gqom Fire", "Sipho Dlamini", "Afrique du Sud", "Gqom", 6900, 560],["Lagos Gospel Praise", "Grace Eze", "Nigeria", "Gospel africain", 5100, 430],["Oran Raï Story", "Cheb Nadir", "Algérie", "Raï", 3500, 270],["Mombasa Waves", "Baraka Otieno", "Kenya", "Bongo Flava", 4900, 410],["Abidjan Midnight", "Kofi Dembélé", "Côte d’Ivoire", "Coupé-décalé", 6400, 530],["Lagos Sunrise", "Ada Okoro", "Nigeria", "Afro-soul", 8900, 760]].map((x,i)=>({id:"d"+i,n:i,t:x[0],a:x[1],c:x[2],g:x[3],p:x[4],l:x[5],r:+(3.8+((i*7)%12)/10).toFixed(1),rn:30+i*11,cm:i<3?[["Fan_Aya","Trop fort ce son 🔥"]]:[],demo:1}));
+var S={g:"Tous",v:"feed",q:"",cur:null,open:{}},DB=null,UID=null,ASSETS=null,DL=null,CAN=true,tm=0,role="fan",AUTH=null,OKF=false,mode="up";
+var D={profiles:[],tracks:[],likes:[],comments:[],follows:[],plays:[],ratings:[]};
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function col(s){var h=0;for(var i=0;i<s.length;i++)h+=s.charCodeAt(i);return COL[h%6]}
+function ini(s){return esc(s.split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase())}
+function cv(s){var c=col(s);return'<div class="cv" style="background:linear-gradient(135deg,'+c+','+COL[(COL.indexOf(c)+2)%6]+')">'+ini(s)+'</div>'}
+function fk(n){return n.replace(/[^A-Za-z0-9]/g,"")}
+function prof(){return D.profiles.filter(p=>p._id==UID)[0]}
+function all(){return D.tracks.slice().sort((a,b)=>b.ts-a.ts).concat(T)}
+function find(id){return all().filter(t=>t.id==id||t._id==id)[0]}
+function lc(t){return(t.l||0)+D.likes.filter(x=>x.tid==t.id).length}
+function pc(t){return(t.p||0)+D.plays.filter(x=>x.tid==t.id).length}
+function mine(id){return D.likes.some(x=>x.tid==id&&x.uid==UID)}
+function cmts(t){return(t.cm||[]).map(c=>({name:c[0],text:c[1]})).concat(D.comments.filter(x=>x.tid==t.id).sort((a,b)=>a.ts-b.ts))}
+function score(t){return pc(t)+lc(t)*5+Math.round(rt(t).a*20)}
+function toast(m){var d=document.createElement("div");d.textContent=m;d.style.cssText="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#2b2230;color:#fff;padding:10px 18px;border-radius:20px;z-index:30;max-width:90%;text-align:center";document.body.appendChild(d);setTimeout(()=>d.remove(),2800)}
+function needW(){if(!OKF){toast("Configure Firebase d’abord (voir le guide)");return 0}if(!UID){auth("in");return 0}return 1}
+function needP(){if(!needW())return 0;if(!prof()){toast("Profil en cours de chargement…");return 0}return 1}
+function fail(e){toast("Erreur serveur : "+((e&&e.code)||"réessaie"))}
+function wav(i){var r=8000,n=r*6,b=new Uint8Array(44+n*2),v=new DataView(b.buffer);function w(o,s){for(var k=0;k<s.length;k++)v.setUint8(o+k,s.charCodeAt(k))}w(0,"RIFF");v.setUint32(4,36+n*2,true);w(8,"WAVEfmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,r,true);v.setUint32(28,r*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,"data");v.setUint32(40,n*2,true);var sc=[0,3,5,7,10,12,7,5];for(var k=0;k<n;k++){var s=Math.floor(k/(r/4)),f=180*Math.pow(2,sc[(s+i)%8]/12),t=(k%(r/4))/r,kk=k%(r/2),kick=kk<800?Math.sin(2*Math.PI*60*kk/r)*.6:0,y=Math.sin(2*Math.PI*f*k/r)*Math.exp(-t*6)*.4+kick;v.setInt16(44+k*2,Math.max(-1,Math.min(1,y))*30000,true)}var q="";for(var k=0;k<b.length;k+=8192)q+=String.fromCharCode.apply(null,b.subarray(k,k+8192));return"data:audio/wav;base64,"+btoa(q)}
+function crc(b){var t=crc.t,c;if(!t){t=crc.t=[];for(var n=0;n<256;n++){c=n;for(var k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}}c=-1;for(var i=0;i<b.length;i++)c=t[(c^b[i])&255]^(c>>>8);return(c^-1)>>>0}
+function zip(name,b){var n=new TextEncoder().encode(name),c=crc(b),L=30+n.length,o=new Uint8Array(L+b.length+46+n.length+22),v=new DataView(o.buffer);v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint32(14,c,true);v.setUint32(18,b.length,true);v.setUint32(22,b.length,true);v.setUint16(26,n.length,true);o.set(n,30);o.set(b,L);var p=L+b.length;v.setUint32(p,0x02014b50,true);v.setUint16(p+4,20,true);v.setUint16(p+6,20,true);v.setUint32(p+16,c,true);v.setUint32(p+20,b.length,true);v.setUint32(p+24,b.length,true);v.setUint16(p+28,n.length,true);o.set(n,p+46);var q=p+46+n.length;v.setUint32(q,0x06054b50,true);v.setUint16(q+8,1,true);v.setUint16(q+10,1,true);v.setUint32(q+12,46+n.length,true);v.setUint32(q+16,p,true);return o}
+function src(t){if(t.demo){if(!t.src)t.src=wav(t.n%8);return t.src}return t.aid}
+function nav(){var p=prof(),v=[["feed","Accueil"],["rank","Classement"],["art","Artistes"]];if(p&&p.role=="artiste")v.push(["up","Uploader"]);if(p)v.push(["me","Mon profil"]);$("nav").innerHTML=v.map(x=>'<button class="'+(S.v==x[0]?"on":"")+'" onclick="go(\''+x[0]+'\')">'+x[1]+"</button>").join("");$("acc").innerHTML='<span class="badge">'+(OKF?"🟢 Firebase":"⚪ Mode démo")+'</span><span class="badge">🚫 Zéro pub</span>'+(p?'<span class="badge">'+esc(p.name)+'</span><button class="btn o" onclick="out()">Déconnexion</button>':'<button class="btn" onclick="auth(\'in\')">Connexion / Inscription</button>')}
+function go(v){S.v=v;render()}
+function card(t){var cm=cmts(t),pl=S.cur==t.id&&!$("au").paused,id="'"+t.id+"'",o=S.open[t.id];return'<div class="card"><div class="tr">'+cv(t.a)+'<div class="inf"><b>'+esc(t.t)+'</b><small>'+esc(t.a)+" · "+C[t.c]+" "+esc(t.c)+'</small><span class="tag">'+esc(t.g)+'</span><div><small>👁 '+pc(t).toLocaleString("fr")+' vues</small></div>'+stars(t)+'</div><button class="pl" onclick="play('+id+')">'+(pl?"❚❚":"▶")+'</button></div><div class="act"><button class="'+(mine(t.id)?"liked":"")+'" onclick="like('+id+')">'+(mine(t.id)?"❤️":"🤍")+" J’aime ("+lc(t)+')</button><button onclick="tg('+id+')">💬 Commenter ('+cm.length+')</button><button onclick="share('+id+')">↗ Partager</button><button onclick="dl('+id+')">⬇ Télécharger</button></div><div class="cm" id="c'+t.id+'" style="display:'+(o?"block":"none")+'">'+cm.map(c=>"<p><b>"+esc(c.name)+"</b> "+esc(c.text)+"</p>").join("")+'<form onsubmit="return cmt(event,'+id+')"><input placeholder="Écris un commentaire…" maxlength="200"><button class="btn">Envoyer</button></form></div></div>'}
+function list(a){return a.length?a.map(card).join(""):'<div class="empty">Aucun son trouvé pour le moment.</div>'}
+function flt(){return all().filter(t=>(S.g=="Tous"||t.g==S.g)&&(!S.q||(t.t+t.a+t.c).toLowerCase().indexOf(S.q)>-1))}
+function rt(t){var rs=D.ratings.filter(x=>x.tid==t.id),s=rs.reduce((a,x)=>a+x.v,0),b=t.r||0,bn=t.rn||0,n=bn+rs.length;return{a:n?(b*bn+s)/n:0,n:n}}
+function myr(id){var x=D.ratings.filter(y=>y.tid==id&&y.uid==UID)[0];return x?x.v:0}
+function stars(t){var r=rt(t),k=myr(t.id)||Math.round(r.a);return'<div class="st">'+[1,2,3,4,5].map(i=>'<button class="s'+(i<=k?" on":"")+'" title="Noter '+i+'/5" onclick="rate(\''+t.id+'\','+i+')">★</button>').join("")+' <small>'+r.a.toFixed(1)+" ("+r.n+")</small></div>"}
+function rate(id,v){if(!needP())return;DB.doc("ratings/"+id+"_"+UID).set({tid:id,uid:UID,v:v}).catch(fail)}
+function top10(){var r=all().sort((x,y)=>score(y)-score(x)).slice(0,10);return'<h2>🔥 Top 10 de la plateforme</h2><div class="t10">'+r.map((t,i)=>'<div class="it"><span class="n">'+(i+1)+'</span>'+cv(t.a)+'<b>'+esc(t.t)+'</b><small>'+esc(t.a)+'</small><small>'+C[t.c]+" "+esc(t.c)+'</small><small>★ '+rt(t).a.toFixed(1)+' · 👁 '+pc(t).toLocaleString("fr")+'</small><button class="pl" style="margin-top:8px;width:38px;height:38px" onclick="play(\''+t.id+'\')">▶</button></div>').join("")+"</div>"}
+function render(){nav();var h="",a=all(),p=prof();
+if(S.v=="feed"){h+=(p?"":'<div class="hero"><h1>Toute l’Afrique, un seul son 🌍</h1><p>Écoute, partage et télécharge les singles de tes artistes préférés. Artiste ? Uploade ton single et fais-toi découvrir.</p><button class="btn" style="background:#fff;color:var(--sd)" onclick="auth()">Rejoindre SINGGLE</button></div>')+top10()+'<input placeholder="🔍 Rechercher un titre, un artiste, un pays…" value="'+esc(S.q)+'" oninput="S.q=this.value.toLowerCase();$(\'fl\').innerHTML=list(flt())" style="margin-bottom:12px"><div class="chips">'+["Tous"].concat(G).map(g=>'<button class="chip '+(S.g==g?"on":"")+'" onclick="S.g=\''+g.replace(/\'/g,"\\'")+'\';render()">'+g+"</button>").join("")+'</div><div id="fl">'+list(flt())+"</div>"}
+if(S.v=="rank"){var r=a.sort((x,y)=>score(y)-score(x));h+='<h2>🏆 Classement des singles</h2><div class="card">'+r.map((t,i)=>'<div class="rk"><div class="n">'+(i+1)+"</div>"+cv(t.a)+'<div class="inf"><b>'+esc(t.t)+"</b><small>"+esc(t.a)+" · "+C[t.c]+" "+esc(t.c)+" · "+esc(t.g)+'</small></div><small>★ '+rt(t).a.toFixed(1)+' · ❤️ '+lc(t)+'</small><button class="pl" onclick="play(\''+t.id+'\')">▶</button></div>').join("")+"</div>"}
+if(S.v=="art"){var m={};D.profiles.forEach(x=>{if(x.role=="artiste")m[x.name]={n:x.name,c:x.country,g:x.genre,k:0,p:0}});a.forEach(t=>{var x=m[t.a]=m[t.a]||{n:t.a,c:t.c,g:t.g,k:0,p:0};x.k++;x.p+=pc(t)});h+='<h2>🎤 Artistes</h2><div class="grid">'+Object.keys(m).map(k=>{var x=m[k],key=fk(x.n),fo=D.follows.filter(f=>f.key==key),me=fo.some(f=>f.uid==UID);return'<div class="card ar">'+cv(x.n)+"<b>"+esc(x.n)+"</b><div><small>"+C[x.c]+" "+esc(x.c)+'</small></div><span class="tag">'+esc(x.g)+"</span><div><small>"+x.k+" single(s) · "+x.p.toLocaleString("fr")+" vues · "+fo.length+' abonné(s)</small></div><button class="btn '+(me?"o":"")+'" style="margin-top:10px" onclick="fol(\''+key+'\')">'+(me?"Suivi ✓":"Suivre")+"</button></div>"}).join("")+"</div>"}
+if(S.v=="up"&&p){h+='<h2>⬆ Uploader un single</h2><form class="card" onsubmit="return upl(event)"><label>Titre du single</label><input id="ut" required maxlength="60"><label>Genre</label><select id="ug">'+G.map(g=>"<option>"+g+"</option>").join("")+'</select><label>Fichier audio (MP3, M4A, WAV… 15 Mo max)</label><input id="uf" type="file" accept=".m4a,.mp4,.webm,.mp3,.wav,.ogg,audio/*" required><br><br><button class="btn" id="ub">Publier le single</button></form>'}
+if(S.v=="me"&&p){var mt=a.filter(t=>t.uid==UID);h+='<div class="card" style="text-align:center">'+cv(p.name).replace('class="cv"','class="cv" style="margin:0 auto 10px;width:90px;height:90px;border-radius:50%;font-size:32px;background:'+col(p.name)+'"')+'<h2 style="margin:0">'+esc(p.name)+"</h2><small>"+(p.role=="artiste"?"🎤 Artiste":"🎧 Fan")+" · "+C[p.country]+" "+esc(p.country)+" · "+esc(p.genre)+'</small><p style="margin:10px 0">'+esc(p.bio||"Ajoute une bio pour compléter ton profil.")+'</p></div><form class="card" onsubmit="return pro(event)"><h3>Compléter mon profil</h3><label>Nom</label><input id="pn" value="'+esc(p.name)+'" required><label>Pays</label><select id="pc">'+Object.keys(C).map(c=>"<option"+(c==p.country?" selected":"")+">"+c+"</option>").join("")+'</select><label>Genre favori</label><select id="pg">'+G.map(g=>"<option"+(g==p.genre?" selected":"")+">"+g+"</option>").join("")+'</select><label>Bio</label><textarea id="pb2" rows="3" maxlength="200">'+esc(p.bio||"")+'</textarea><br><button class="btn">Enregistrer</button></form>'+(p.role=="artiste"?"<h2>Mes singles</h2>"+list(mt):"")}
+$("m").innerHTML=(OKF?"":'<div class="card"><b>⚙ Mode démo</b><br><small>Ajoute ta config Firebase en haut du fichier pour activer les comptes, l’upload et les données partagées.</small></div>')+h}
+function sched(){if(tm)return;tm=setTimeout(()=>{tm=0;var e=document.activeElement;if(e&&e.closest&&e.closest("#m")&&/INPUT|TEXTAREA|SELECT/.test(e.tagName))return;render()},200)}
+function sub(n){DB.collection(n).limit(1000).onSnapshot(q=>{D[n]=q.docs.map(d=>Object.assign({_id:d.id},d.data()));sched()},e=>toast("Synchronisation interrompue"))}
+function play(id){var t=find(id),au=$("au");if(S.cur==id&&!au.paused){au.pause();return}if(S.cur!=id){S.cur=id;au.src=src(t);$("pt").textContent=t.t;$("pa").textContent=t.a+" · "+t.c;if(DB&&UID&&CAN&&!D.plays.some(x=>x.tid==id&&x.uid==UID))DB.doc("plays/"+id+"_"+UID).set({tid:id,uid:UID}).catch(()=>{})}au.play().catch(()=>toast("Lecture impossible pour ce fichier"))}
+$("au").onplay=$("au").onpause=function(){$("pp").textContent=$("au").paused?"▶":"❚❚";sched()};
+$("au").ontimeupdate=function(){var a=$("au");$("pf").style.width=(a.duration?a.currentTime/a.duration*100:0)+"%"};
+$("pb").onclick=function(e){var a=$("au");if(a.duration)a.currentTime=e.offsetX/this.offsetWidth*a.duration};
+$("pp").onclick=function(){if(S.cur==null)play("d0");else{var a=$("au");a.paused?a.play():a.pause()}};
+function like(id){if(!needP())return;var d=DB.doc("likes/"+id+"_"+UID);(mine(id)?d.delete():d.set({tid:id,uid:UID})).catch(fail)}
+function tg(id){S.open[id]=!S.open[id];$("c"+id).style.display=S.open[id]?"block":"none"}
+function cmt(e,id){e.preventDefault();var i=e.target.querySelector("input"),v=i.value.trim();if(!v||!needP())return false;S.open[id]=true;DB.collection("comments").add({tid:id,uid:UID,name:prof().name,text:v,ts:Date.now()}).then(()=>{i.value=""}).catch(fail);return false}
+function share(id){var t=find(id),tx=t.t+" – "+t.a+" sur SINGGLE";if(navigator.share){navigator.share({title:"SINGGLE",text:tx}).catch(()=>{})}else{try{navigator.clipboard.writeText(tx);toast("Texte copié ✓")}catch(e){toast(tx)}}}
+function dl(id){var t=find(id),a=document.createElement("a");a.href=src(t);a.download=(t.t||"single")+(t.demo?".wav":"");a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();toast("Téléchargement lancé ⬇")}
+function fol(key){if(!needP())return;var d=DB.doc("follows/"+key+"_"+UID),me=D.follows.some(f=>f.key==key&&f.uid==UID);(me?d.delete():d.set({key:key,uid:UID})).catch(fail)}
+function auth(m){if(!OKF){toast("Ajoute d’abord ta config Firebase (voir le guide)");return}mode=m||"up";role="fan";var up=mode=="up";$("mc").innerHTML='<h2>'+(up?"Créer mon compte":"Connexion")+'</h2><form onsubmit="return reg(event)"><label>E-mail</label><input id="re" type="email" required><label>Mot de passe (6 caractères min.)</label><input id="rp" type="password" minlength="6" required>'+(up?'<div class="seg" style="margin-top:12px"><button type="button" class="on" id="rf" onclick="sr(\'fan\')">🎧 Fan</button><button type="button" id="ra" onclick="sr(\'artiste\')">🎤 Artiste</button></div><label>Nom / nom d’artiste</label><input id="rn" required maxlength="40"><label>Pays</label><select id="rc">'+Object.keys(C).map(c=>"<option>"+c+"</option>").join("")+'</select><label>Genre préféré</label><select id="rg">'+G.map(g=>"<option>"+g+"</option>").join("")+'</select><label>Bio (facultatif)</label><textarea id="rb" rows="2" maxlength="200"></textarea>':"")+'<br><button class="btn" style="width:100%">'+(up?"Rejoindre SINGGLE":"Se connecter")+'</button><br><br><button type="button" class="btn o" style="width:100%" onclick="auth(\''+(up?"in":"up")+'\')">'+(up?"J’ai déjà un compte":"Créer un compte")+'</button><br><br><button type="button" class="btn o" style="width:100%" onclick="cl()">Annuler</button></form>';$("md").className="modal on"}
+function sr(r){role=r;$("rf").className=r=="fan"?"on":"";$("ra").className=r=="artiste"?"on":""}
+function cl(){$("md").className="modal"}
+function fe(e){var c=(e&&e.code)||"";toast(c.indexOf("email-already")>-1?"Cet e-mail est déjà utilisé":/invalid|wrong|user-not/.test(c)?"E-mail ou mot de passe incorrect":c.indexOf("weak")>-1?"Mot de passe trop faible":"Erreur : "+c)}
+function reg(e){e.preventDefault();var em=$("re").value,pw=$("rp").value;if(mode=="in"){AUTH.login(em,pw).then(()=>{cl();toast("Connecté ✓")}).catch(fe);return false}AUTH.signup(em,pw).then(r=>DB.doc("profiles/"+r.user.uid).set({name:$("rn").value.trim(),role:role,country:$("rc").value,genre:$("rg").value,bio:$("rb").value})).then(()=>{cl();toast("Compte créé ✓")}).catch(fe);return false}
+function out(){AUTH.out().then(()=>{S.v="feed";render()})}
+function pro(e){e.preventDefault();DB.doc("profiles/"+UID).update({name:$("pn").value.trim(),country:$("pc").value,genre:$("pg").value,bio:$("pb2").value}).then(()=>toast("Profil mis à jour ✓")).catch(fail);return false}
+function upl(e){e.preventDefault();var f=$("uf").files[0],p=prof();if(!f||!needP())return false;if(f.size>15*1048576){toast("Fichier trop lourd (15 Mo max)");return false}$("ub").textContent="Envoi…";var x=(f.name.split(".").pop()||"mp3").toLowerCase();ASSETS.upload(f).then(u=>DB.collection("tracks").add({t:$("ut").value.trim(),a:p.name,uid:UID,c:p.country,g:$("ug").value,aid:u,ext:x,ts:Date.now()})).then(()=>{S.v="feed";S.g="Tous";toast("Single publié 🎉");render()}).catch(er=>{$("ub").textContent="Publier le single";toast("Erreur d’envoi : "+((er&&er.code)||"réessaie"))});return false}
+render();
+Object.assign(window,{rate,go,play,like,tg,cmt,share,dl,fol,auth,sr,cl,reg,pro,upl,out,render,list,flt,S,$});
+OKF=CFG.apiKey!=="VOTRE_API_KEY";
+if(OKF){try{
+const app=initializeApp(CFG),A=getAuth(app),F=getFirestore(app),ST=getStorage(app);
+DB={doc:p=>({set:d=>setDoc(doc(F,p),d),update:d=>updateDoc(doc(F,p),d),delete:()=>deleteDoc(doc(F,p))}),collection:n=>({add:d=>addDoc(collection(F,n),d),limit:k=>({onSnapshot:(f,e)=>onSnapshot(query(collection(F,n),limit(k)),f,e)})})};
+ASSETS={upload:f=>{var nm=Date.now()+"_"+f.name.replace(/[^\w.\-]/g,"_"),r=ref(ST,"tracks/"+UID+"/"+nm);return uploadBytes(r,f,{contentType:f.type||"audio/mpeg",contentDisposition:'attachment; filename="'+nm+'"'}).then(()=>getDownloadURL(r))}};
+AUTH={signup:(e,p)=>createUserWithEmailAndPassword(A,e,p),login:(e,p)=>signInWithEmailAndPassword(A,e,p),out:()=>signOut(A)};
+onAuthStateChanged(A,u=>{UID=u?u.uid:null;render()});
+["profiles","tracks","likes","comments","follows","plays","ratings"].forEach(sub);
+}catch(e){OKF=false;toast("Config Firebase invalide")}}
+render();
+</script>
+</body>
+</html>
